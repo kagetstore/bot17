@@ -425,6 +425,7 @@ Saya ${botname} Yg Siap Membantu Anda Dalam Kinerja Whatsapp Agar Mempermudah Se
 │ あ ${prefix}sewabot
 │ あ ${prefix}bc
 │ あ ${prefix}report
+│ あ Mau sewa bot ketik #owner
 └⬣`
 teks =
 `Ini Base Buatan Zero YT7 Silahkan Di Pake Jika Ingin Recode Atau Reupload Tolong Creator Jangan Hpus Tolong Hargai Karya Orang 🙏`
