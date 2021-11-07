@@ -846,13 +846,7 @@ hehe = await zeroyt7.sendMessage(from, {
 "displayName": `${inilist.length} kontak`,
 "contacts": inilist 
 }, 'contactsArrayMessage', { quoted: ftrol })
-button = [
-  {buttonId: '.youtube', buttonText: {displayText: '☰ YOUTUBE'}, type: 1},
-  {buttonId: '.instagram', buttonText: {displayText: '☰ INSTAGRAM'}, type: 1},
-  {buttonId: '.tiktok', buttonText: {displayText: '☰ TIKTOK'}, type: 1}
-]
- buttons = {
-    contentText: 'Nih Nomer Owner Ku Mau Tau Tentang Apa Ya ?',
+    contentText: 'Nih Nomer Owner Ku Mau sewa bot?',
     footerText: faketeks,
     buttons: button,
     headerType: 1
