@@ -430,7 +430,8 @@ Saya ${botname} Yg Siap Membantu Anda Dalam Kinerja Whatsapp Agar Mempermudah Se
 teks =
 `Ini Base Buatan Zero YT7 Silahkan Di Pake Jika Ingin Recode Atau Reupload Tolong Creator Jangan Hpus Tolong Hargai Karya Orang 🙏`
 but = [
-          { buttonId: `${prefix}infobot`, buttonText: { displayText: '☰ INFO' }, type: 1 },
+          { buttonId: `${prefix}infobot`, buttonText: { displayText: '☰ INFO' }, type: 1 
+          { buttonId: `${prefix}sewabot`, buttonText: { displayText: '☰ SEWA BOT' }, type: 1 },
           { buttonId: `${prefix}owner`, buttonText: { displayText: '☰ OWNER' }, type: 1 }
         ]
         sendButLocation(from, menunya, teks, gambar, but)
@@ -918,7 +919,58 @@ zeroyt7.sendMessage(from, teks, text, {quoted: ftrol})
 break
 
 //━━━━━━━━━━━━━━━[ INFO BOT ]━━━━━━━━━━━━━━━━━//
-
+case 'sewabot':
+if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
+teks =
+`╭─❒ LIST JASAWA BOT
+├ Seminggu : 5.000
+├ Sebulan : 10.000
+├ Permanen : 15.000
+└❏
+╭─❒ FITUR BANYAK
+├ ANTILINK
+├ ANTIVIRTEX
+├ WELCOME
+├ STICKER
+├ DLL
+└❏
+╭─❒ KEUNGGULAN
+├ BOT ON 24 JAM
+├ SELALU UPDATE
+└❏
+Jika Ingin Sewa Bot
+Silahkan Pilih Metode Pembayaran
+Ss Tanda Bukti Kasih Ke Owner Bot Tidak Ada Bukti Tidak Kami Layani 
+Dibawah Ini`
+gam = fs.readFileSync('./cyber/zerothumb.jpg')
+but = [
+          { buttonId: `${prefix}gopay`, buttonText: { displayText: 'GOPAY' }, type: 1 },
+          { buttonId: `${prefix}dana`, buttonText: { displayText: 'DANA' }, type: 1 },
+          { buttonId: `${prefix}ovo`, buttonText: { displayText: 'OVO' }, type: 1 }
+        ]
+        sendButImage(from, teks, "©Cyber Sad", gam, but)
+break
+case 'gopay':
+if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
+but = [
+{ buttonId: `${prefix}owner`, buttonText: { displayText: 'DONE' }, type: 1 }
+]
+sendButton(from, "GOPAY : 085282864190 (sakdiah)", faketeks, but, mek)
+break
+case 'dana':
+if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
+but = [
+{ buttonId: `${prefix}owner`, buttonText: { displayText: 'DONE' }, type: 1 }
+]
+sendButton(from, "DANA : 085763500823 (kagetstore)", faketeks, but, mek)
+break
+case 'ovo':
+if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
+but = [
+{ buttonId: `${prefix}owner`, buttonText: { displayText: 'DONE' }, type: 1 }
+]
+sendButton(from, "OVO : 085763500823 (Kagetstore)", faketeks, but, mek)
+break
 case "speed":
 case "ping":
 timestamp = speed();
