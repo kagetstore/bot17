@@ -1,437 +1,432 @@
-//NEW BASE BY ZERO YT7
+//DASAR BARU DENGAN NOL YT7
 //RECODE SESUKA HATIMU JANGAN HPUS CREATOR NYA
 //MAAF BASE NYA JELEK
 
-//FOLLOW ALL SOSIAL MEDIAML ME
-//YOUTUBE : Zero YT7
-//INSTAGRAM : @Zero_YT7
-//TIKTOK : @_zeroyt7
-//GITHUB : Zero-YT7
+//IKUTI SEMUA MEDIAML SOSIAL SAYA
+//YOUTUBE : Nol YT7
+//INSTAGRAM : @Zero_YT 7
+//TIKTOK : @_zeroyt 7
+//GITHUB : Nol-YT7
 
-let { fetchJosn, kyun, fetchText } = require('./lib/fetcher')
-let { color, bgcolor } = require('./lib/color')
-let { wait, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, start, info, success, close } = require('./lib/functions')
+let  { fetchJosn , kyun , fetchText }  =  memerlukan ( './lib/fetcher' )
+let  { color , bgcolor }  =  membutuhkan ( './lib/color' )
+let  { wait , getBuffer , h2k , generateMessageID , getGroupAdmins , getRandom , start , info , success , close }  =  require ( './lib/functions' )
 
-let
+membiarkan
 	{
-		WAConnection,
-		MessageType,
-		Presence,
-		MessageOptions,
-		Mimetype,
-		WALocationMessage,
-		WA_MESSAGE_STUB_TYPES,
-		WA_DEFAULT_EPHEMERAL,
-		ReconnectMode,
-		ProxyAgent,
-		GroupSettingChange,
-		waChatKey,
-		mentionedJid,
-		processTime,
-	} = require("@adiwajshing/baileys")
-const fs = require("fs")
-const axios = require('axios')
-const speed = require("performance-now")
-const util = require('util')
-const crypto = require('crypto')
-const request = require('request')
-const { exec, spawn } = require('child_process')
-const fetch = require('node-fetch')
-const moment = require('moment-timezone')
-const ffmpeg = require('fluent-ffmpeg')
-const { removeBackgroundFromImageFile } = require('remove.bg')
+		Koneksi WA ,
+		Jenis Pesan ,
+		Kehadiran ,
+		Opsi Pesan ,
+		tipe pantomim ,
+		Pesan Lokasi WA ,
+		WA_MESSAGE_STUB_TYPES ,
+		WA_DEFAULT_EPHEMERAL ,
+		Hubungkan kembaliMode ,
+		Agen Proksi ,
+		Perubahan Pengaturan Grup ,
+		waChatKey ,
+		disebutkanJid ,
+		waktu proses ,
+	}  =  membutuhkan ( "@adiwajshing/baileys" )
+const  fs  =  membutuhkan ( "fs" )
+const  aksio  =  membutuhkan ( 'aksios' )
+const  speed  =  membutuhkan ( "kinerja-sekarang" )
+const  util  =  membutuhkan ( 'util' )
+const  crypto  =  membutuhkan ( 'crypto' )
+const  permintaan  =  membutuhkan ( 'permintaan' )
+const  { exec , spawn }  =  membutuhkan ( 'child_process' )
+const  fetch  =  membutuhkan ( 'pengambilan simpul' )
+const  momen  =  membutuhkan ( 'momen-zona waktu' )
+const  ffmpeg  =  membutuhkan ( 'fasih-ffmpeg' )
+const  { removeBackgroundFromImageFile }  =  membutuhkan ( 'remove.bg' )
 
 //━━━━━━━━━━━━━━━[ DATABASE ]━━━━━━━━━━━━━━━━━//
 
-let _antilink = JSON.parse(fs.readFileSync('./database/antilink.json'))
-let _antivirtex = JSON.parse(fs.readFileSync('./database/antivirtex.json'))
-let setting = JSON.parse(fs.readFileSync('./setting.json'))
-let pendaftar = JSON.parse(fs.readFileSync('./database/user.json'))
+biarkan  _antilink  =  JSON . parse ( fs . readFileSync ( './database/antilink.json' ) )
+biarkan  _antivirtex  =  JSON . parse ( fs . readFileSync ( './database/antivirtex.json' ) )
+biarkan  pengaturan  =  JSON . parse ( fs . readFileSync ( './setting.json' ) )
+biarkan  pendaftar  =  JSON . parse ( fs . readFileSync ( './database/user.json' ) )
 
-//━━━━━━━━━━━━━━━[ SETTING ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ PENGATURAN ]━━━━━━━━━━━━━━━━━//
 
-owner = setting.OwnerNumber
-botname = setting.BotName
-zerokey = setting.ZeroKey
-ownername = setting.OwnerName
+pemilik  =  pengaturan . PemilikNomor
+nama bot  =  pengaturan . Nama Bot
+tombol nol  =  pengaturan . NolKey
+nama pemilik  =  pengaturan . Nama pemilik
 
-//━━━━━━━━━━━━━━━[ MODUL EXPORTS ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ EKSPOR MODUL ]━━━━━━━━━━━━━━━━━//
 
-module.exports = zeroyt7 = async (zeroyt7, mek, _welkom) => {
-	try {
-        if (!mek.hasNewMessage) return
-        mek = mek.messages.all()[0]
-		if (!mek.message) return
-		if (mek.key && mek.key.remoteJid == 'status@broadcast') return
-		global.blocked
-        	mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
-        let content = JSON.stringify(mek.message)
-		let from = mek.key.remoteJid
-		let { text, extendedText, contact, contactsArray, groupInviteMessage, listMessage, buttonsMessage, location, liveLocation, image, video, sticker, document, audio, product, quotedMsg } = MessageType
-		let time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
-        let type = Object.keys(mek.message)[0]        
-        let cmd = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
-        let prefix = /^[°•π÷×¶∆£¢€¥®™=|~!#$%^&.?/\\©^z+*@,;]/.test(cmd) ? cmd.match(/^[°•π÷×¶∆£¢€¥®™=|~!#$%^&.?/\\©^z+*,;]/gi) : '-'          	
-        body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'videoMessage') && mek.message[type].caption.startsWith(prefix) ? mek.message[type].caption : (type == 'extendedTextMessage') && mek.message[type].text.startsWith(prefix) ? mek.message[type].text : (type == 'listResponseMessage') && mek.message[type].singleSelectReply.selectedRowId ? mek.message[type].singleSelectReply.selectedRowId : (type == 'buttonsResponseMessage') && mek.message[type].selectedButtonId ? mek.message[type].selectedButtonId : ''
-		budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
-		let command = body.slice(1).trim().split(/ +/).shift().toLowerCase()		
-		let args = body.trim().split(/ +/).slice(1)
-		let isCmd = body.startsWith(prefix)
-		let q = args.join(' ')
-		let Verived = "0@s.whatsapp.net"
-		let txt = mek.message.conversation
-		let botNumber = zeroyt7.user.jid
-		let ownerNumber = [`${owner}@s.whatsapp.net`, `6285157740529@s.whatsapp.net`]
-		let isGroup = from.endsWith('@g.us')
-		let sender = isGroup ? mek.participant : mek.key.remoteJid
-		let totalchat = await zeroyt7.chats.all()
-		let groupMetadata = isGroup ? await zeroyt7.groupMetadata(from) : ''
-		let groupName = isGroup ? groupMetadata.subject : ''
-		let groupId = isGroup ? groupMetadata.jid : ''
-		let groupMembers = isGroup ? groupMetadata.participants : ''
-		let groupDesc = isGroup ? groupMetadata.desc : ''
-		let groupOwner = isGroup ? groupMetadata.owner : ''
-		let groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
-		let isBotGroupAdmins = groupAdmins.includes(botNumber) || false
-		let isGroupAdmins = groupAdmins.includes(sender) || false
-		let conts = mek.key.fromMe ? zeroyt7.user.jid : zeroyt7.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-        let pushname = mek.key.fromMe ? zeroyt7.user.name : conts.notify || conts.vname || conts.name || '-'
+modul . ekspor  =  zeroyt7  =  asinkron  ( zeroyt7 ,  mek ,  _welkom )  =>  {
+	coba  {
+        jika  ( ! mek . hasNewMessage )  kembali
+        mek  =  mek . pesan . semua ( ) [ 0 ]
+		jika  ( ! mek . message )  kembali
+		if  ( mek . key  &&  mek . key . remoteJid  ==  'status@broadcast' )  kembali
+		global . diblokir
+        	mek . message  =  ( Object . keys ( mek . message ) [ 0 ]  ===  'ephemeralMessage' ) ? mek . pesan . pesan singkat . pesan : mek . pesan
+        biarkan  konten  =  JSON . stringify ( mek . pesan )
+		biarkan  dari  =  mek . kunci . remoteJid
+		let  { text , extendedText , contact , contactsArray , groupInviteMessage , listMessage , keysMessage , lokasi , liveLocation , gambar , video , stiker , dokumen , audio , produk , kutipanMsg }  =  MessageType
+		misalkan  waktu  =  momen . tz ( 'Asia/Jakarta' ) . format ( 'DD/MM JJ:mm:dd' )
+        biarkan  jenis  =  Obyek . kunci ( mek . pesan ) [ 0 ]        
+        let  cmd  =  ( ketik  ===  'percakapan'  &&  mek . pesan . percakapan ) ? mek . pesan . percakapan : ( ketik  ==  'imageMessage' )  &&  mek . pesan . pesan gambar . keterangan ? mek . pesan . pesan gambar . caption : ( ketik  ==  'videoMessage' )  &&  mek. pesan . videoPesan . keterangan ? mek . pesan . videoPesan . keterangan : ( ketik  ==  'extendedTextMessage' )  &&  mek . pesan . diperpanjangTextMessage . teks ? mek . pesan . diperpanjangTextMessage . teks : '' . irisan ( 1 ) . memangkas ( ) . membagi (/  + / ) . pergeseran ( ) . untuk Huruf Kecil ( )
+        let  prefix  =  / ^ [ °•π÷×¶∆£¢€¥®™=|~!#$%^&.?/ \\ ©^z+*@,; ] / . tes ( cmd ) ? cmd . cocok ( / ^ [ °•π÷×¶∆£¢€¥®™=|~!#$%^&.?/ \\ ©^z+*,; ] / gi ) : '-'          	
+        body  =  ( ketik  ===  'percakapan'  &&  mek . pesan . percakapan . dimulaiDengan ( awalan ) ) ? mek . pesan . percakapan : ( ketik  ==  'imageMessage' )  &&  mek . pesan [ jenis ] . keterangan . dimulaiDengan ( awalan ) ? mek . pesan [ ketik ]. caption : ( ketik  ==  'videoMessage' )  &&  mek . pesan [ jenis ] . keterangan . dimulaiDengan ( awalan ) ? mek . pesan [ jenis ] . keterangan : ( ketik  ==  'extendedTextMessage' )  &&  mek . pesan [ jenis ] . teks . dimulaiDengan ( awalan )? mek . pesan [ jenis ] . teks : ( ketik  ==  'listResponseMessage' )  &&  mek . pesan [ jenis ] . singleSelectReply . dipilihRowId ? mek . pesan [ jenis ] . singleSelectReply . selectedRowId : ( ketik  ==  'buttonsResponseMessage' )  &&  mek . pesan [ ketik] . dipilihButtonId ? mek . pesan [ jenis ] . selectedButtonId : ''
+		sobat  =  ( ketik  ===  'percakapan' ) ? mek . pesan . percakapan : ( ketik  ===  'extendedTextMessage' ) ? mek . pesan . diperpanjangTextMessage . teks : ''
+		biarkan  perintah  =  tubuh . irisan ( 1 ) . memangkas ( ) . membagi ( /  + / ) . pergeseran ( ) . untuk Huruf Kecil ( )		
+		biarkan  args  =  tubuh . memangkas ( ) . membagi ( /  + / ) . potong ( 1 )
+		biarkan  isCmd  =  tubuh . dimulaiDengan ( awalan )
+		misalkan  q  =  argumen . gabung ( ' ' )
+		biarkan  Terverifikasi  =  "0@s.whatsapp.net"
+		biarkan  txt  =  mek . pesan . percakapan
+		biarkan  botNumber  =  zeroyt7 . pengguna . jid
+		let  ownerNumber  =  [ ` ${ pemilik } @s.whatsapp.net` ,  `6285157740529@s.whatsapp.net` ]
+		biarkan  isGroup  =  dari . berakhirDengan ( '@g.us' )
+		biarkan  pengirim  =  isGroup ? mek . peserta : mek . kunci . remoteJid
+		biarkan  totalchat  =  menunggu  zeroyt7 . chatting . semua ( )
+		biarkan  groupMetadata  =  isGroup ? menunggu  zeroyt7 . groupMetadata ( dari ) : ''
+		biarkan  groupName  =  isGroup ? grupMetadata . subjek : ''
+		biarkan  groupId  =  isGroup ? grupMetadata . jid : ''
+		biarkan  groupMembers  =  isGroup ? grupMetadata . peserta : ''
+		biarkan  groupDesc  =  isGroup ? grupMetadata . des : ''
+		biarkan  groupOwner  =  isGroup ? grupMetadata . pemilik : ''
+		biarkan  groupAdmins  =  isGroup ? getGroupAdmins ( groupMembers ) : ''
+		biarkan  isBotGroupAdmins  =  groupAdmins . termasuk ( nomor bot )  ||  Salah
+		biarkan  isGroupAdmins  =  groupAdmins . termasuk ( pengirim )  ||  Salah
+		biarkan  lanjutan  =  mek . kunci . dari saya ? zeroyt7 . pengguna . jid : zeroyt7 . kontak [ pengirim ]  ||  {  beri tahu : jid . ganti ( / @. + / ,  '' )  }
+        biarkan  pushname  =  mek . kunci . dari saya ? zeroyt7 . pengguna . nama : lanjutan . beri tahu  ||  lanjut . nama v  ||  lanjut . nama  ||  '-'
         
-		let isAntiLink = isGroup ? _antilink.includes(from) : false
-		let isWelkom = isGroup ? _welkom.includes(from) : false
-		let isAntiVirtex = isGroup ? _antivirtex.includes(from) : false
-		let isOwner = ownerNumber.includes(sender)
-		let isUser = pendaftar.includes(sender)
-		let isMybot = isOwner || mek.key.fromMe
+		biarkan  isAntiLink  =  isGroup ? _antilink . termasuk ( dari ) : false
+		biarkan  isWelkom  =  isGroup ? _welkom . termasuk ( dari ) : false
+		biarkan  isAntiVirtex  =  isGroup ? _antivirtex . termasuk ( dari ) : false
+		biarkan  isOwner  =  pemilikNumber . termasuk ( pengirim )
+		let  isUser  =  pendaftar . termasuk ( pengirim )
+		biarkan  isMybot  =  isOwner  ||  mek . kunci . dari saya
 		
-//━━━━━━━━━━━━━━━[ CONNECTION 1 ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ KONEKSI 1 ]━━━━━━━━━━━━━━━━━//
 
-		mess = {
-			wait: 'Sabar Lagi Proses Tod...!',
-			success: 'Done Jangan Lupa Subscribe Zero YT7',
-			error: {
-				stick: 'Gagal Convert Gambar To Sticker...Coba Lagi !',
-				Iv: 'Linknya Error Tod !'
-			},
-			only: {
-				admin: 'Kusus Admin Tod !',
-				group: 'Khusus Group Tod !'
+		kekacauan  =  {
+			wait : 'Sabar Lagi Proses Tod...!' ,
+			sukses : 'Jangan Lupa Subscribe Zero YT7' ,
+			kesalahan : {
+				stick : 'Gagal Convert Gambar Ke Sticker...Coba Lagi !' ,
+				Iv : 'Linknya Error Tod !'
+			} ,
+			hanya : {
+				admin : 'Kusus Admin Tod !' ,
+				grup : 'Khusus Grup Tod !'
 			}
 		}
-		faketeks = 'Zero YT7'
-		let isUrl = (url) => {
-        return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
+		faketeks  =  'Nol YT7'
+		biarkan  isUrl  =  ( url )  =>  {
+        kembali  url . cocok ( new  RegExp ( / https?: \/ \/ ( www \. ) ? [ -a-zA-Z0-9@:%.+~#= ] { 1,256 } \. [ a-zA-Z0-9 () ] { 1,6 } \b ( [ -a-zA-Z0-9()@:%+.~#?&/= ] * ) / ,  'gi' ) )
         }
-        let reply = (teks) => {
-            zeroyt7.sendMessage(from, teks, text, {quoted:mek})
+        biarkan  balasan  =  ( teks )  =>  {
+            zeroyt7 . sendMessage ( dari ,  teks ,  teks ,  { dikutip : mek } )
         }
-        let sendMess = (hehe, teks) => {
-            zeroyt7.sendMessage(hehe, teks, text)
+        let  sendMess  =  ( hehe ,  teks )  =>  {
+            zeroyt7 . sendMessage ( hehe ,  teks ,  teks )
         }
-        let mentions = (teks, memberr, id) => {
-            (id == null || id == undefined || id == false) ? zeroyt7.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : zeroyt7.sendMessage(from, teks.trim(), extendedText, { quoted: ftrol, contextInfo: { "mentionedJid": memberr } })
+        let  mentions  =  ( teks ,  memberr ,  id )  =>  {
+            ( id  ==  null  ||  id  ==  undefined  ||  id  ==  false ) ? zeroyt7 . sendMessage ( dari ,  teks . trim ( ) ,  extendedText ,  {  contextInfo : {  "mentionedJid" : memberr  }  } ) : zeroyt7 . sendMessage ( dari ,  teks . trim ( ) ,  extendedText,  {  dikutip : ftrol ,  contextInfo : {  "mentionedJid" : memberr  }  } )
         }
-        let zero = fs.readFileSync ('./zeroyt7/zerothumb.jpg')
-        let costum = (pesan, tipe, target, target2) => {
-			zeroyt7.sendMessage(from, pesan, tipe, { quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` } } })
+        misalkan  nol  =  fs . readFileSync  ( './zeroyt7/zerothumb.jpg' )
+        let  costum  =  ( pesan ,  tipe ,  target ,  target2 )  =>  {
+			zeroyt7 . sendMessage ( from ,  pesan ,  tipe ,  {  dikutip : {  key : {  fromMe : false ,  partisipan : ` ${ target } ` , ... ( from ? {  remoteJid : from  } : { } )  } ,  message : {  percakapan : ` ${ target2 }`  }  }  } )
 		}
-		let runtime = function (seconds) {
-  seconds = Number(seconds);
-  var d = Math.floor(seconds / (3600 * 24));
-  var h = Math.floor((seconds % (3600 * 24)) / 3600);
-  var m = Math.floor((seconds % 3600) / 60);
-  var s = Math.floor(seconds % 60);
-  var dDisplay = d > 0 ? d + (d == 1 ? " hari, " : " Hari, ") : "";
-  var hDisplay = h > 0 ? h + (h == 1 ? " jam, " : " Jam, ") : "";
-  var mDisplay = m > 0 ? m + (m == 1 ? " menit, " : " Menit, ") : "";
-  var sDisplay = s > 0 ? s + (s == 1 ? " detik" : " Detik") : "";
-  return dDisplay + hDisplay + mDisplay + sDisplay;
-};
-var ase = new Date();
-                        var jamss = ase.getHours();
-                         switch(jamss){
-                case 0: jamss = "Jangan gadang kak"; break;
-                case 1: jamss = "Jangan gadang kak"; break;
-                case 2: jamss = "Jangan gadang kak"; break;
-                case 3: jamss = "Jangan gadang kak"; break;
-                case 4: jamss = "Jangan lupa sholat Subuh kak"; break;
-                case 5: jamss = "Selamat pagi"; break;
-                case 6: jamss = "Selamat pagi"; break;
-                case 7: jamss = "Selamat pagi"; break;
-                case 8: jamss = "Selamat pagi"; break;
-                case 9: jamss = "Selamat pagi"; break;
-                case 10: jamss = "Selamat pagi"; break;
-                case 11: jamss = "Selamat siang"; break;
-                case 12: jamss = "Jangan lupa sholat Zuhur kak"; break;
-                case 13: jamss = "Selamat siang"; break;
-                case 14: jamss = "Selamat sore"; break;
-                case 15: jamss = "Jangan lupa sholat Ashar kak"; break;
-                case 16: jamss = "Selamat sore"; break;
-                case 17: jamss = "Selamat sore"; break;
-                case 18: jamss = "Selamat malam"; break;
-                case 19: jamss = "Jangan lupa sholat Isya kak"; break;
-                case 20: jamss = "Selamat malam"; break;
-                case 21: jamss = "Selamat malam"; break;
-                case 22: jamss = "Selamat malam"; break;
-                case 23: jamss = "Selamat malam"; break;
+		biarkan  runtime  =  fungsi  ( detik )  {
+  detik  =  Angka ( detik ) ;
+  var  d  =  Matematika . lantai ( detik  /  ( 3600  *  24 ) ) ;
+  var  h  =  Matematika . lantai ( ( % detik  ( 3600 * 24 ) ) / 3600 ) ;     
+  var  m  =  Matematika . lantai ( ( detik  %  3600 )  /  60 ) ;
+  var  s  =  Matematika . lantai ( detik  %  60 ) ;
+  var  dTampilan  =  d  >  0 ? d  +  ( d  ==  1 ? " hari, " : " Hari, " ) : "" ;
+  var  hDisplay  =  h  >  0 ? h  +  ( h  ==  1 ? " selai, " : " Selai, " ) : "" ;
+  var  mDisplay  =  m  >  0 ? m  +  ( m  ==  1 ? " menit, " : " Menit, " ) : "" ;
+  var  sTampilan  =  s  >  0 ? s  +  ( s  ==  1 ? " detik" : " Detik" ) : "" ;
+  kembali  dDisplay  +  hDisplay  +  mDisplay  +  sDisplay ;
+} ;
+var  ase  =  Tanggal baru  ( ) ;
+                        var  jamss  =  ase . getHours ( ) ;
+                         saklar ( macet ) {
+                case  0 : jamss  =  "Jangan gadang kak" ;  istirahat ;
+                case  1 : jamss  =  "Jangan gadang kak" ;  istirahat ;
+                case  2 : jamss  =  "Jangan gadang kak" ;  istirahat ;
+                kasus  3 : macet  =  "Jangan gadang kak" ;  istirahat ;
+                case  4 : jamss  =  "Jangan lupa sholat Subuh kak" ;  istirahat ;
+                case  5 : jamss  =  "Selamat pagi" ;  istirahat ;
+                case  6 : jamss  =  "Selamat pagi" ;  istirahat ;
+                case  7 : jamss  =  "Selamat pagi" ;  istirahat ;
+                case  8 : jamss  =  "Selamat pagi" ;  istirahat ;
+                case  9 : jamss  =  "Selamat pagi" ;  istirahat ;
+                case  10 : jamss  =  "Selamat pagi" ;  istirahat ;
+                case  11 : jamss  =  "Selamat siang" ;  istirahat ;
+                case  12 : jamss  =  "Jangan lupa sholat Zuhur kak" ;  istirahat ;
+                case  13 : jamss  =  "Selamat siang" ;  istirahat ;
+                case  14 : jamss  =  "Selamat sakit" ;  istirahat ;
+                case  15 : jamss  =  "Jangan lupa sholat Ashar kak" ;  istirahat ;
+                case  16 : jamss  =  "Selamat sakit" ;  istirahat ;
+                case  17 : jamss  =  "Selamat sakit" ;  istirahat ;
+                case  18 : jamss  =  "Selamat malam" ;  istirahat ;
+                case  19 : jamss  =  "Jangan lupa sholat Isya kak" ;  istirahat ;
+                case  20 : jamss  =  "Selamat malam" ;  istirahat ;
+                case  21 : jamss  =  "Selamat malam" ;  istirahat ;
+                kasus  22 : jamss  =  "Selamat malam" ;  istirahat ;
+                kasus  23 : jamss  =  "Selamat malam" ;  istirahat ;
             }
-            var tampilUcapan = "" + jamss;
+            var  tampilUcapan  =  ""  +  jamss ;
         
-//━━━━━━━━━━━━━━━[ BUTTON ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ TOMBOL ]━━━━━━━━━━━━━━━━━//
 
-        let sendButton = async (from, context, fortext, but, mek) => {
-            buttonMessages = {
-                contentText: context,
-                footerText: fortext,
-                buttons: but,
-                headerType: 1
+        let  sendButton  =  async  ( from ,  context ,  fortext ,  but ,  mek )  =>  {
+            tombolPesan  =  {
+                kontenTeks : konteks ,
+                footerText : fortext ,
+                tombol : tapi ,
+                Jenis header : 1
             }
-            zeroyt7.sendMessage(from, buttonMessages, buttonsMessage, {
-                quoted: ftrol
-            })
+            zeroyt7 . sendMessage ( dari ,  buttonMessages ,  keysMessage ,  {
+                dikutip : ftrol
+            } )
         }
-        let sendButImage = async (from, context, fortext, img, but, mek) => {
-            jadinya = await zeroyt7.prepareMessage(from, img, image)
-            buttonMessagesI = {
-                imageMessage: jadinya.message.imageMessage,
-                contentText: context,
-                footerText: fortext,
-                buttons: but,
-                headerType: 4
+        let  sendButImage  =  async  ( from ,  context ,  fortext ,  img ,  but ,  mek )  =>  {
+            jadinya  =  menunggu  zeroyt7 . prepareMessage ( dari ,  img ,  gambar )
+            tombolPesanI  =  {
+                imageMessage : jadinya . pesan . pesan gambar ,
+                kontenTeks : konteks ,
+                footerText : fortext ,
+                tombol : tapi ,
+                Jenis header : 4
             }
-            zeroyt7.sendMessage(from, buttonMessagesI, buttonsMessage, {
-                quoted: ftrol,
-            })
+            zeroyt7 . sendMessage ( dari ,  buttonMessagesI ,  keysMessage ,  {
+                dikutip : ftrol ,
+            } )
         }
-        async function sendButLocation(id, text1, desc1, gam1, but = [], options = {}) {
-            let buttonMessages = { locationMessage: { jpegThumbnail: gam1 }, contentText: text1, footerText: desc1, buttons: but, headerType: 6 }
-            return zeroyt7.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+         fungsi  async sendButLocation ( id ,  text1 ,  desc1 ,  gam1 ,  tapi  =  [ ] ,  options  =  { } )  {
+            biarkan  buttonMessages  =  {  locationMessage : {  jpegThumbnail : gam1  } ,  contentText : text1 ,  footerText : desc1 ,  tombol : tetapi ,  headerType : 6  }
+            kembali  zeroyt7 . sendMessage ( id ,  buttonMessages ,  MessageType . keysMessage ,  opsi )
         }
 
-//━━━━━━━━━━━━━━━[ FAKE FAKEAN ]━━━━━━━━━━━━━━━━━//
-        let fakestatus = (teks) => {
-            zeroyt7.sendMessage(from, teks, text, {
-                quoted: {
-                    key: {
-                        fromMe: false,
-                        participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-                    },
-                    message: {
-                        "imageMessage": {
-                            "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc",
-                            "mimetype": "image/jpeg",
-                            "caption": faketeks,
-                            "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=",
-                            "fileLength": "28777",
-                            "height": 1080,
-                            "width": 1079,
-                            "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=",
-                            "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=",
-                            "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69",
-                            "mediaKeyTimestamp": "1610993486",
-                            "jpegThumbnail": fs.readFileSync('./zeroyt7/zero.jpg'),
-                            "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
+//━━━━━━━━━━━━━━━[ PALSU PALSU ]━━━━━━━━━━━━━━━━━//
+        biarkan  status palsu  =  ( teks )  =>  {
+            zeroyt7 . sendMessage ( dari ,  teks ,  teks ,  {
+                dikutip : {
+                    kunci : {
+                        dari Saya : salah ,
+                        peserta : `0@s.whatsapp.net` , ... ( dari ? {  remoteJid : "status@broadcast"  } : { } )
+                    } ,
+                    pesan : {
+                        "pesan gambar" : {
+                            "url" : "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc" ,
+                            "mimetype" : "gambar/jpeg" ,
+                            "caption" : faketeks ,
+                            "fileSha256" : "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=" ,
+                            "fileLength" : "28777" ,
+                            "tinggi" : 1080 ,
+                            "lebar" : 1079 ,
+                            "mediaKey" : "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=" ,
+                            "fileEncSha256" : "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=" ,
+                            "directPath" : "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69" ,
+                            "mediaKeyTimestamp" : "1610993486" ,
+                            "jpegThumbnail" : fs . readFileSync ( './zeroyt7/zero.jpg' ) ,
+                            "scansSidecar" : "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
                         }
                     }
                 }
-            })
+            } )
         }
-        zeroyt7.chatRead(from, "read")
-        let fakegroup = (teks) => {
-            zeroyt7.sendMessage(from, teks, text, {
-                quoted: {
-                    key: {
-                        fromMe: false,
-                        participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289523258649-1604595598@g.us" } : {})
-                    },
-                    message: {
-                        "imageMessage": {
-                            "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc",
-                            "mimetype": "image/jpeg",
-                            "caption": faketeks,
-                            "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=",
-                            "fileLength": "28777",
-                            "height": 1080,
-                            "width": 1079,
-                            "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=",
-                            "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=",
-                            "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69",
-                            "mediaKeyTimestamp": "1610993486",
-                            "jpegThumbnail": fs.readFileSync('./zeroyt7/zero.jpg'),
-                            "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
+        zeroyt7 . chatRead ( dari ,  "baca" )
+        biarkan  fakegroup  =  ( teks )  =>  {
+            zeroyt7 . sendMessage ( dari ,  teks ,  teks ,  {
+                dikutip : {
+                    kunci : {
+                        dari Saya : salah ,
+                        peserta : `0@s.whatsapp.net` , ... ( dari ? {  remoteJid : "6289523258649-1604595598@g.us"  } : { } )
+                    } ,
+                    pesan : {
+                        "pesan gambar" : {
+                            "url" : "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc" ,
+                            "mimetype" : "gambar/jpeg" ,
+                            "caption" : faketeks ,
+                            "fileSha256" : "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=" ,
+                            "fileLength" : "28777" ,
+                            "tinggi" : 1080 ,
+                            "lebar" : 1079 ,
+                            "mediaKey" : "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=" ,
+                            "fileEncSha256" : "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=" ,
+                            "directPath" : "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69" ,
+                            "mediaKeyTimestamp" : "1610993486" ,
+                            "jpegThumbnail" : fs . readFileSync ( './zeroyt7/zero.jpg' ) ,
+                            "scansSidecar" : "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
                         }
                     }
                 }
-            })
+            } )
         }
-        let ftrol = {
-	key : {
-                          participant : '0@s.whatsapp.net'
-                        },
-       message: {
-                    orderMessage: {
-                            itemCount : 123,
-                            status: 1,
-                            surface : 1,
-                            message: `SUBSCRIBE ZERO YT7`, 
-                            orderTitle: `SUBSCRIBE ZERO YT7`,
-                            thumbnail: zero, //Gambarnye
-                            sellerJid: '0@s.whatsapp.net' 
+        misalkan  ftrol  =  {
+	kunci : {
+                          peserta : '0@s.whatsapp.net'
+                        } ,
+       pesan : {
+                    pesanpesan : {
+                            jumlah barang : 123 ,
+                            status : 1 ,
+                            permukaan : 1 ,
+                            pesan : `SUBSCRIBE ZERO YT7` , 
+                            orderTitle : `SUBSCRIBE ZERO YT7` ,
+                            thumbnail : nol ,  //Gambarnye
+                            sellerJid : '0@s.whatsapp.net' 
                           }
                         }
                       }
         
-//━━━━━━━━━━━━━━━[ CONNECTION 2 ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ KONEKSI 2 ]━━━━━━━━━━━━━━━━━//
 
-        let sendStickerFromUrl = async(to, url) => {
-                var names = Date.now() / 10000;
-                var download = function (uri, filename, callback) {
-                    request.head(uri, function (err, res, body) {
-                        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                    });
-                };
-                download(url, './stik' + names + '.png', async function () {
-                    console.log('selesai');
-                    let filess = './stik' + names + '.png'
-                    let asw = './stik' + names + '.webp'
-                    exec(`ffmpeg -i ${filess} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${asw}`, (err) => {
-                        let media = fs.readFileSync(asw)
-                        zeroyt7.sendMessage(to, media, MessageType.sticker,{quoted:mek})
-                        fs.unlinkSync(filess)
-                        fs.unlinkSync(asw)
-                    });
-                });
+        biarkan  sendStickerFromUrl  =  async ( ke ,  url )  =>  {
+                var  nama  =  Tanggal . sekarang ( )  /  10.000 ;
+                var  download  =  fungsi  ( uri ,  nama file ,  panggilan balik )  {
+                    permintaan . kepala ( uri ,  fungsi  ( err ,  res ,  body )  {
+                        permintaan ( uri ) . pipa ( fs . createWriteStream ( nama file ) ) . pada ( 'tutup' ,  panggilan balik ) ;
+                    } ) ;
+                } ;
+                unduh ( url ,  './stik'  +  nama  +  '.png' ,  fungsi asinkron  ( ) {  
+                    konsol . log ( 'selesai' ) ;
+                    biarkan  file  =  './stik'  +  nama  +  '.png'
+                    biarkan  asw  =  './stik'  +  nama  +  '.webp'
+                    exec ( `ffmpeg -i ${ filess } -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ asw } ` ,  ( err )  =>  {
+                        misalkan  media  =  fs . readFileSync ( asw )
+                        zeroyt7 . sendMessage ( ke ,  media ,  MessageType . sticker , { dikutip : mek } )
+                        fs . batalkan tautan Sinkronisasi ( file )
+                        fs . batalkan tautanSinkronisasi ( asw )
+                    } ) ;
+                } ) ;
             }
-        let sendMediaURL = async(to, url, text="", mids=[]) =>{
-                if(mids.length > 0){
-                    text = normalizeMention(to, text, mids)
+        biarkan  sendMediaURL  =  async ( ke ,  url ,  teks = "" ,  mids = [ ] )  => {
+                jika ( MID . panjang  >  0 ) {
+                    text  =  normalizeMention ( untuk ,  teks ,  MID )
                 }
-                let fn = Date.now() / 10000;
-                let filename = fn.toString()
-                let mime = ""
-                var download = function (uri, filename, callback) {
-                    request.head(uri, function (err, res, body) {
-                        mime = res.headers['content-type']
-                        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                    });
-                };
-                download(url, filename, async function () {
-                    console.log('done');
-                    let media = fs.readFileSync(filename)
-                    let type = mime.split("/")[0]+"Message"
-                    if(mime === "image/gif"){
-                        type = MessageType.video
-                        mime = Mimetype.gif
+                misalkan  fn  =  Tanggal . sekarang ( )  /  10.000 ;
+                biarkan  nama file  =  fn . toString ( )
+                biarkan  mime  =  ""
+                var  download  =  fungsi  ( uri ,  nama file ,  panggilan balik )  {
+                    permintaan . kepala ( uri ,  fungsi  ( err ,  res ,  body )  {
+                        pantomim  =  res . header [ 'tipe konten' ]
+                        permintaan ( uri ) . pipa ( fs . createWriteStream ( nama file ) ) . pada ( 'tutup' ,  panggilan balik ) ;
+                    } ) ;
+                } ;
+                unduh ( url ,  nama file ,  fungsi asinkron  ( ) {  
+                    konsol . log ( 'selesai' ) ;
+                    misalkan  media  =  fs . readFileSync ( nama file )
+                    biarkan  ketik  =  pantomim . split ( "/" ) [ 0 ] + "Pesan"
+                    if ( pantomim  ===  "gambar/gif" ) {
+                        jenis  =  Jenis Pesan . video
+                        pantomim  =  Mimetype . gif
                     }
-                    if(mime.split("/")[0] === "audio"){
-                        mime = Mimetype.mp4Audio
+                    if ( mime . split ( "/" ) [ 0 ]  ===  "audio" ) {
+                        pantomim  =  Mimetype . mp4Audio
                     }
-                    zeroyt7.sendMessage(to, media, type, { quoted: ftrol, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
+                    zeroyt7 . sendMessage ( to ,  media ,  type ,  {  dikutip : ftrol ,  mimetype : mime ,  caption : text , contextInfo : { "mentionedJid" : mids } } )
                     
-                    fs.unlinkSync(filename)
-                });
+                    fs . batalkan tautanSync ( nama file )
+                } ) ;
             }   
-            if (budy.includes("https://chat.whatsapp.com/")) {
-if (!isGroup) return
-if (!isAntiLink) return
-if (isGroupAdmins) return
-var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-reply(` *「 GROUP LINK DETECTOR 」*\nKamu mengirimkan link grup chat, maaf kamu di kick dari grup :(`)
-setTimeout(() => {
-zeroyt7.groupRemove(from, [kic]).catch((e) => { reply(`BOT HARUS JADI ADMIN`) })
-}, 0)
+            if  ( sobat . termasuk ( "https://chat.whatsapp.com/" ) )  {
+jika  ( ! isGroup )  kembali
+jika  ( ! isAntiLink )  kembali
+jika  ( isGroupAdmins )  kembali
+var  kic  =  ` ${ pengirim . split ( "@" ) [ 0 ] } @s.whatsapp.net`
+reply ( ` *「 GROUP LINK DETECTOR *\nKamu mengirimkan link grup chat, maaf kamu di kick dari grup :(` )
+setWaktu habis ( ( )  =>  {
+zeroyt7 . groupRemove ( dari ,  [ kic ] ) . catch ( ( e )  =>  {  balasan ( `BOT HARUS JADI ADMIN` )  } )
+} ,  0 )
 }
 
-		if (budy.length > 3500) {
-if (!isGroup) return
-if (!isAntiVirtex) return
-if (isGroupAdmins) return
-reply('Tandai telah dibaca\n'.repeat(300))
-reply(`「 *VIRTEX DETECTOR* 」\n\nKamu mengirimkan virtex, maaf kamu di kick dari group :(`)
-console.log(color('[KICK]', 'red'), color('Received a virus text!', 'yellow'))
-zeroyt7.groupRemove(from, [sender])
+		jika  ( budy . panjang  >  3500 )  {
+jika  ( ! isGroup )  kembali
+jika  ( ! isAntiVirtex )  kembali
+jika  ( isGroupAdmins )  kembali
+reply ( 'Tandai telah dibaca\n' . repeat ( 300 ) )
+reply ( `「 *VIRTEX DETECTOR* \n\nKamu mengirimkan virtex, maaf kamu di kick dari group :(` )
+konsol . log ( color ( '[KICK]' ,  'red' ) ,  color ( 'Menerima teks virus!' ,  'yellow' ) )
+zeroyt7 . grupHapus ( dari ,  [ pengirim ] )
 }     
-if (isCmd && !isUser){
-          pendaftar.push(sender)
-          fs.writeFileSync('./database/user.json', JSON.stringify(pendaftar, null, 2))
+if  ( isCmd  &&  ! isUser ) {
+          pendaftaran . mendorong ( pengirim )
+          fs . writeFileSync ( './database/user.json' ,  JSON . stringify ( pendaftar ,  nol ,  2 ) )
         }
 
-//━━━━━━━━━━━━━━━[ CONNECTION 3 ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ KONEKSI 3 ]━━━━━━━━━━━━━━━━━//
 
-		colors = ['red', 'white', 'black', 'blue', 'yellow', 'green']
-		let isMedia = (type === 'imageMessage' || type === 'videoMessage')
-		let isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
-		let isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
-		let isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
-		let isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
-      	if (!isGroup && isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
-      	//if (!isGroup && !isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mTEXT\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
-     	if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
-      	//if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mTEXT\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+		warna  =  [ 'merah' ,  'putih' ,  'hitam' ,  'biru' ,  'kuning' ,  'hijau' ]
+		let  isMedia  =  ( ketik  ===  'imageMessage'  ||  ketik  ===  'videoMessage' )
+		biarkan  isQuotedImage  =  ketik  ===  'extendedTextMessage'  &&  konten . termasuk ( 'imageMessage' )
+		let  isQuotedVideo  =  ketik  ===  'extendedTextMessage'  &&  konten . termasuk ( 'pesan video' )
+		let  isQuotedAudio  =  ketik  ===  'extendedTextMessage'  &&  konten . termasuk ( 'pesan audio' )
+		biarkan  isQuotedSticker  =  ketik  ===  'extendedTextMessage'  &&  konten . termasuk ( 'stikerMessage' )
+      	if  ( ! isGroup  &&  isCmd )  konsol . log ( '\x1b[1;31m~\x1b[1;37m>' ,  '[\x1b[1;32mEXEC\x1b[1;37m]' ,  waktu ,  warna ( perintah ) ,  'dari' ,  warna ( pengirim . perpecahan ( '@' ) [ 0 ] ) ,  'args:' ,  warna ( args . panjang ) )
+      	//if (!isGroup && !isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mTEXT\x1b[1;37m]', waktu, warna('Pesan'), 'dari', warna(pengirim.split('@')[0]), 'args :', warna(args.length))
+     	jika  ( isCmd  &&  isGroup )  konsol . log ( '\x1b[1;31m~\x1b[1;37m>' ,  '[\x1b[1;32mEXEC\x1b[1;37m]' ,  waktu ,  warna ( perintah ) ,  'dari' ,  warna ( pengirim . perpecahan ( '@' ) [ 0 ] ) ,  'di' ,  warna ( groupName ) ,  'args:' ,  warna ( args . panjang ))
+      	//if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mTEXT\x1b[1;37m]', waktu, warna ('Pesan'), 'dari', warna(pengirim.split('@')[0]), 'dalam', warna(namagrup), 'args :', warna(args.length))
 
 //━━━━━━━━━━━━━━━[ MENU ]━━━━━━━━━━━━━━━━━//
 
-switch (command) {
-	case 'menu':
-	gambar = fs.readFileSync('./zeroyt7/zero.jpg')
-                   timestamp = speed();
-				latensi = speed() - timestamp	
-              menunya = 
-`Hi ${pushname}, ${tampilUcapan}✨
-Saya ${botname} Yg Siap Membantu Anda Dalam Kinerja Whatsapp Agar Mempermudah Seperti Membuat Sticker , Dll
-
-╭─❒ 「 Bot Info 」 ❒
-├ Nama Bot : ${botname}
-├ Nama Owner : ${ownername}
-├ Prefix : Multi Prefix
-├ Nomor Owner : ${owner.split('@')[0]}
-├ Runtime : ${runtime(process.uptime())}
-├ Language : Javascript & Nodejs
-├ Totan Pengguna : ${pendaftar.length}
-├ Speed : ${latensi.toFixed(4)} second
+beralih  ( perintah )  {
+	kasus  'menu' :
+	gambar  =  fs . readFileSync ( './zeroyt7/zero.jpg' )
+                   stempel waktu  =  kecepatan ( ) ;
+				latensi  =  kecepatan ( )  -  stempel waktu	
+              menunya  = 
+`Hi $ { pushname } , $ { tampilUcapan } ✨
+Saya ${ botname } Yg Siap Membantu Anda Dalam Kinerja Whatsapp Agar Mempermudah Seperti Membuat Sticker , Dll
+Info Bot
+Nama Bot : ${ nama bot }
+Nama Pemilik : ${ nama pemilik }
+Awalan : Multi Awalan
+Nomor Pemilik : ${ pemilik . membagi ( '@' ) [ 0 ] }
+Runtime : ${ runtime ( proses . uptime ( ) ) }
+Bahasa: Javascript & Nodejs
+Totan Pengguna : ${ pendaftar . panjang }
+Kecepatan : ${ latensi . toFixed ( 4 ) } detik
 └❏
-╭─❒ 「 User Info 」 ❒
-├ Status : ${isOwner ? 'Owner' : 'User'}
-├ Nama User : ${pushname}
-├ Nomor User : ${sender.split('@')[0]}
+Info Pengguna
+Status : ${ isOwner ? 'Pemilik' : 'Pengguna' }
+Nama Pengguna : ${ pushname }
+Nomor Pengguna : ${ pengirim . membagi ( '@' ) [ 0 ] }
 └❏
-
-╭─⬣「 Group Menu 」⬣
-│ あ ${prefix}antilink
-│ あ ${prefix}welcome
-│ あ ${prefix}antivirtex
-│ あ ${prefix}group
-│ あ ${prefix}linkgrup
-│ あ ${prefix}promote
-│ あ ${prefix}demote
-│ あ ${prefix}add
-│ あ ${prefix}kick
-│ あ ${prefix}setpp
-│ あ ${prefix}setdesc
-│ あ ${prefix}setname
-│ あ ${prefix}hidetag
+Menu Grup
+│あ$ { prefix } antilink
+│あ$ { prefix } diterima
+│あ$ { prefix } antivirtex
+│あ$ { prefix } kelompok
+│あ$ { prefix } linkgrup
+│あ$ { prefix } mempromosikan
+│あ$ { prefix } demote
+│あ$ { prefix } add
+│あ$ { prefix } tendangan
+│あ$ { prefix } setpp
+│あ$ { prefix } setdesc
+│あ$ { prefix } setName
+│あ$ { prefix } hidetag
 └⬣
-
-╭─⬣「 Sticker Menu 」⬣
-│ あ ${prefix}attp
-│ あ ${prefix}toimg
-│ あ ${prefix}sticker
-│ あ ${prefix}tomp3
-│ あ ${prefix}tovideo
+Menu Stiker
+│あ$ { prefix } attP
+│あ$ { prefix } toimg
+│あ$ { prefix } sticker
+│あ$ { prefix } tomp3
+│あ$ { prefix } tovideo
 └⬣
 	
-╭─⬣「 Owner Menu 」⬣
-│ あ ${prefix}owner
-│ あ ${prefix}sewabot
-│ あ ${prefix}bc
-│ あ ${prefix}report
-│ あ Sewa bot ketik #owner
-└⬣`
-teks =
+Menu Pemilik
+│あ$ { prefix } pemilik
+│あ$ { prefix } sewabot
+│あ$ { prefix } bc
+│あ$ { prefix } Laporan
+`
+teks  =
 `Ini Base Buatan Zero YT7 Silahkan Di Pake Jika Ingin Recode Atau Reupload Tolong Creator Jangan Hpus Tolong Hargai Karya Orang 🙏`
 but = [
-          { buttonId: `${prefix}infobot`, buttonText: { displayText: '☰ INFO' }, type: 1 
-          { buttonId: `${prefix}sewabot`, buttonText: { displayText: '☰ SEWA BOT' }, type: 1 },
+          { buttonId: `${prefix}infobot`, buttonText: { displayText: '☰ INFO' }, type: 1 },
           { buttonId: `${prefix}owner`, buttonText: { displayText: '☰ OWNER' }, type: 1 }
         ]
         sendButLocation(from, menunya, teks, gambar, but)
@@ -484,31 +479,31 @@ fs.writeFileSync('./database/welcome.json', JSON.stringify(_welkom))
 reply(`\`\`\`✓Sukses mengaktifkan fitur welcome di group\`\`\` *${groupMetadata.subject}*`)
 break
 case 'welcomeoff':
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
+jika (!isGroup) return reply(mess.only.group)
+jika (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
 if (!isWelkom) return reply('welcome sudah off sebelumnya')
 _welkom.splice(from, 1)
-fs.writeFileSync('./database/welcome.json', JSON.stringify(_welkom))
-reply(`\`\`\`✓Sukses menonaktifkan fitur welcome di group\`\`\` *${groupMetadata.subject}*`)
-break
-case 'antilink' :
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
-but = [
-{ buttonId: '!antilinkon', buttonText: { displayText: '☰ ON' }, type: 1 },
-{ buttonId: '!antilinkoff', buttonText: { displayText: '☰ OFF' }, type: 1 }
+fs . writeFileSync ( './database/welcome.json' ,  JSON . stringify ( _welkom ) )
+reply ( `\`\`\`✓Sukses menonaktifkan fitur welcome di group\`\`\` * ${ groupMetadata . subject } *` )
+merusak
+kasus  'antilink' :
+jika  ( ! isGroup )  kembali  balasan ( berantakan . hanya . group )
+jika  ( ! isGroupAdmins )  kembali  balasan ( berantakan . hanya . admin )
+if  ( ! isBotGroupAdmins )  mengembalikan  balasan ( "Bot Bukan Admin :)" )
+tapi  =  [
+{  buttonId : '!antilinkon' ,  buttonText : {  displayText : '☰ ON'  } ,  ketik : 1  } ,
+{  buttonId : '!antilinkoff' ,  buttonText : {  displayText :'☰ OFF' }, type: 1 }
 ]
-sendButton(from, "Silahkan pilih untuk antilink group", faketeks, but, mek)
+sendButton ( from ,  "Silahkan pilih untuk antilink group" ,  faketeks, but, mek)
 break
 case 'antilinkon' :
 if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
-if (isAntiLink) return reply('anti link sudah on')
-_antilink.push(from)
-fs.writeFileSync('./database/antilink.json', JSON.stringify(_antilink))
+jika  ( ! isGroupAdmins )  kembali  balasan ( berantakan . hanya . admin )
+if  ( ! isBotGroupAdmins )  mengembalikan  balasan ( "Bot Bukan Admin :)" )
+jika  ( isAntiLink )  kembali  balasan ( 'anti Link Sudah pada' )
+_antilink . mendorong ( dari )
+fs . writeFileSync ( './database/antilink.json' ,  JSON . stringify ( _antilink ) )
 reply(`\`\`\`✓Sukses mengaktifkan fitur anti link di group\`\`\` *${groupMetadata.subject}*`)
 break
 case 'antilinkoff' :
@@ -525,12 +520,12 @@ if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
 but = [
-{ buttonId: '!antivirtexon', buttonText: { displayText: '☰ ON' }, type: 1 },
-{ buttonId: '!antivirtexoff', buttonText: { displayText: '☰ OFF' }, type: 1 }
+{  buttonId : '!antivirtexon' ,  buttonText : {  displayText : '☰ ON'  } ,  ketik : 1  } ,
+{  buttonId : '!antivirtexoff' ,  buttonText : {  displayText : '☰ OFF'  } ,  ketik : 1  }
 ]
-sendButton(from, "Silahkan pilih untuk antivirtex group", faketeks, but, mek)
-break
-case 'antivirtexon' :
+sendButton ( from ,  "Silahkan pilih untuk antivirtex group" ,  faketeks ,  but ,  mek )
+merusak
+kasus  'antivirtexon' :
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
@@ -541,25 +536,25 @@ reply(`\`\`\`Sukses mengaktifkan mode anti virtex di group\`\`\` *${groupMetadat
 break
 case 'antivirtexoff' :
 if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
-if (!isAntiVirtex) return reply('Mode anti virtex sudah nonaktif sebelumnya')
-_antivirtex.splice(from, 1)
-fs.writeFileSync('./database/antivirtex.json', JSON.stringify(_antivirtex))
-reply(`\`\`\`✓Sukes menonaktifkan mode anti virtex di group\`\`\` *${groupMetadata.subject}*`)
-break
-case 'group' :
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isGroup) return reply(mess.only.group)
-if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
-but = [
+jika  ( ! isGroupAdmins )  kembali  balasan ( berantakan . hanya . admin )
+if  ( ! isBotGroupAdmins )  mengembalikan  balasan ( "Bot Bukan Admin :)" )
+if  ( ! isAntiVirtex )  mengembalikan  balasan ( 'Mode anti virtex sudah nonaktif sebelumnya' )
+_antivirtex . sambungan ( dari ,  1 )
+fs . writeFileSync ( './database/antivirtex.json' ,  JSON . stringify ( _antivirtex ))
+reply ( `\`\`\`✓Sukes menonaktifkan mode anti virtex di group\`\`\` * ${ groupMetadata . subject } *` )
+merusak
+kasus 'group' :
+jika  ( ! isGroupAdmins )  kembali  balasan ( berantakan . hanya . admin)
+jika  ( ! isGroup )  kembali  balasan ( berantakan . hanya . group)
+if  ( ! isBotGroupAdmins )  mengembalikan  balasan ( "Bot Bukan Admin :)" )
+tapi  =  [
 { buttonId: '!groupbuka', buttonText: { displayText: '☰ BUKA' }, type: 1 },
-{ buttonId: '!geouptutup', buttonText: { displayText: '☰ TUTUP' }, type: 1 }
+{  buttonId : '!geouptutup' ,  buttonText : {  displayText : '☰ TUTUP'  } ,  ketik : 1  }
 ]
-sendButton(from, "Silahkan pilih untuk buka/tutup group", faketeks, but, mek)
-break
-case 'groupbuka' :
-if (!isGroup) return reply(mess.only.group)
+sendButton ( from ,  "Silahkan pilih untuk buka/tutup group" ,  faketeks ,  but ,  mek )
+merusak
+kasus  'groupbuka' :
+jika  ( ! isGroup )  kembali  balasan ( berantakan . hanya . group )
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
 reply(`\`\`\`✓Sukses Membuka Group\`\`\` *${groupMetadata.subject}*`)
@@ -569,18 +564,18 @@ case 'grouptutup' :
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
-reply(`\`\`\`✓Sukses Menutup Group\`\`\` *${groupMetadata.subject}*`)
-zeroyt7.groupSettingChange(from, GroupSettingChange.messageSend, true)
-break
-case 'linkgrup' :
-if (!isGroup) return reply(mess.only.group)
-if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
+reply ( `\`\`\`✓Sukses Menutup Group\`\`\` * ${ groupMetadata . subject } *` )
+zeroyt7 . groupSettingChange ( dari ,  GroupSettingChange . messageSend ,  true)
+merusak
+kasus  'linkgrup' :
+jika  ( ! isGroup )  kembali  balasan ( berantakan . hanya . group )
+if  ( ! isBotGroupAdmins )  mengembalikan  balasan ( "Bot Bukan Admin :)" )
 linkgc = await zeroyt7.groupInviteCode(from)
-yeh = `https://chat.whatsapp.com/${linkgc}\n\nlink Group *${groupName}*`
-zeroyt7.sendMessage(from, yeh, text, { quoted: ftrol })
-break
-case 'promote' :
-if (!isGroup) return reply(mess.only.group)
+yeh  =  `https://chat.whatsapp.com/ $ { linkgc } \ n \ nlink Grup * $ { groupName } *`
+zeroyt7 . sendMessage ( dari ,  yeh ,  teks ,  {  dikutip : ftrol  } )
+merusak
+kasus  'promosikan' :
+jika  ( ! isGroup )  kembali  balasan ( berantakan . hanya . group )
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di jadi admin!')
@@ -598,13 +593,13 @@ zeroyt7.groupMakeAdmin(from, mentioned)
 }
 break
 case 'demote' :
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply("Bot Bukan Admin :)")
-if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di tidak jadi admin!')
-mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-if (mentioned.length > 1) {
-teks = 'Perintah di terima, anda tidak menjadi admin :\n'
+jika  ( ! isGroup )  kembali  balasan ( berantakan . hanya . group )
+jika  ( ! isGroupAdmins )  kembali  balasan ( berantakan . hanya . admin )
+if  ( ! isBotGroupAdmins )  mengembalikan  balasan ( "Bot Bukan Admin :)" )
+if  ( mek . message . extendedTextMessage  ===  undefined  ||  mek . message . extendedTextMessage  ===  null )  return  reply ( 'Tag target yang ingin di tidak jadi admin!' )
+disebutkan  =  mek . pesan . diperpanjangTextMessage . konteksInfo . disebutkanJid
+if  ( disebutkan . panjang  >  1 )  {
+teks  =  'Perintah di terima, anda tidak menjadi admin :\n'
 for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
@@ -919,58 +914,7 @@ zeroyt7.sendMessage(from, teks, text, {quoted: ftrol})
 break
 
 //━━━━━━━━━━━━━━━[ INFO BOT ]━━━━━━━━━━━━━━━━━//
-case 'sewabot':
-if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
-teks =
-`╭─❒ LIST JASAWA BOT
-├ Seminggu : 5.000
-├ Sebulan : 10.000
-├ Permanen : 15.000
-└❏
-╭─❒ FITUR BANYAK
-├ ANTILINK
-├ ANTIVIRTEX
-├ WELCOME
-├ STICKER
-├ DLL
-└❏
-╭─❒ KEUNGGULAN
-├ BOT ON 24 JAM
-├ SELALU UPDATE
-└❏
-Jika Ingin Sewa Bot
-Silahkan Pilih Metode Pembayaran
-Ss Tanda Bukti Kasih Ke Owner Bot Tidak Ada Bukti Tidak Kami Layani 
-Dibawah Ini`
-gam = fs.readFileSync('./cyber/zerothumb.jpg')
-but = [
-          { buttonId: `${prefix}gopay`, buttonText: { displayText: 'GOPAY' }, type: 1 },
-          { buttonId: `${prefix}dana`, buttonText: { displayText: 'DANA' }, type: 1 },
-          { buttonId: `${prefix}ovo`, buttonText: { displayText: 'OVO' }, type: 1 }
-        ]
-        sendButImage(from, teks, "©Cyber Sad", gam, but)
-break
-case 'gopay':
-if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
-but = [
-{ buttonId: `${prefix}owner`, buttonText: { displayText: 'DONE' }, type: 1 }
-]
-sendButton(from, "GOPAY : 085282864190 (sakdiah)", faketeks, but, mek)
-break
-case 'dana':
-if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
-but = [
-{ buttonId: `${prefix}owner`, buttonText: { displayText: 'DONE' }, type: 1 }
-]
-sendButton(from, "DANA : 085763500823 (kagetstore)", faketeks, but, mek)
-break
-case 'ovo':
-if (!isRegistered) return sendButRegis(from, daftar1, daftar2, daftar3, { quoted: ftrol})
-but = [
-{ buttonId: `${prefix}owner`, buttonText: { displayText: 'DONE' }, type: 1 }
-]
-sendButton(from, "OVO : 085763500823 (Kagetstore)", faketeks, but, mek)
-break
+
 case "speed":
 case "ping":
 timestamp = speed();
@@ -1018,7 +962,3 @@ if (isOwner) {
 	// console.log(e)
 	}
 }
-
-
-	
-    
